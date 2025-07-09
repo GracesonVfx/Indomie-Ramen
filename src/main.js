@@ -116,7 +116,7 @@ document.querySelector("#nextBtn").addEventListener("click", () => {
   const scrollX = window.scrollX;
 
   const deltaX = -100;
-  const deltaY =.25 * window.innerHeight;
+  const deltaY =.5 * window.innerHeight;
 
   gsap.to(clone, {
     x: target.getBoundingClientRect().left + deltaX,
