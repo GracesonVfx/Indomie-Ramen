@@ -61,7 +61,7 @@ function updateZoom() {
   });
 }
 
-gsap.set("#wood", { rotate: 90, scale: 3, y: -200 });
+// gsap.set("#wood", { rotate: 90, scale: 3, y: -200 });
 
 // 🎮 Keyboard Controls
 document.addEventListener("keydown", (e) => {
