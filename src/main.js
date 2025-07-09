@@ -9,27 +9,17 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 document.body.classList.add("noscroll");
 
-
-// Initialize a new Lenis instance for smooth scrolling
 const lenis = new Lenis();
-
-// Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
 lenis.on("scroll", ScrollTrigger.update);
-
-// Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
-// This ensures Lenis's smooth scroll animation updates on each GSAP tick
 gsap.ticker.add((time) => {
   lenis.raf(time * 1000); // Convert time from seconds to milliseconds
 });
-
-// Disable lag smoothing in GSAP to prevent any delay in scroll animations
 gsap.ticker.lagSmoothing(0);
 
-// 🌟 DOM
 const bowls = document.querySelectorAll("#bowls img");
 const radius = 150;
 let angle = 90;
-let activeIndex = 0; // ✅ FIXED: Declare this at top
+let activeIndex = 0;
 const wrappers = document.querySelectorAll(".bowl-wrapper");
 
 // 🍜 Position bowls in circle
@@ -61,7 +51,7 @@ function updateZoom() {
   });
 }
 
-// gsap.set("#wood", { rotate: 90, scale: 3, y: -200 });
+gsap.set("#wood", { rotate: 90, scale: 3, y: -200 });
 
 // 🎮 Keyboard Controls
 document.addEventListener("keydown", (e) => {
