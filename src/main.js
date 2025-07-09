@@ -127,7 +127,7 @@ document.querySelector("#nextBtn").addEventListener("click", () => {
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -5 * t)), // same ease as GSAP
   });
   console.log(target.getBoundingClientRect().left + deltaX);
-  console.log(target.getBoundingClientRect().top - deltaY);
+  console.log(target.getBoundingClientRect().top + deltaY);
 
   lenis.scrollTo("#about", {
     offset: 0,
