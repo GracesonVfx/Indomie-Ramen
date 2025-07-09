@@ -120,11 +120,11 @@ document.querySelector("#nextBtn").addEventListener("click", () => {
 
   gsap.to(clone, {
     x: target.getBoundingClientRect().left + deltaX,
-    y: target.getBoundingClientRect().top + deltaY,
+    y: target.getBoundingClientRect().top - deltaY,
     scale: 1,
     rotate: 0,
     duration: 3,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -5 * t)), // same ease as GSAP
+    ease: (t) => Math.min(1, 1.001 - Math.pow(2, -5 * t)), // same ease as GSAP
   });
   console.log(target.getBoundingClientRect().left + deltaX);
   console.log(target.getBoundingClientRect().top - deltaY);
@@ -132,6 +132,6 @@ document.querySelector("#nextBtn").addEventListener("click", () => {
   lenis.scrollTo("#about", {
     offset: 0,
     duration: 2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -12 * t)), // same ease as GSAP
+    ease: (t) => Math.min(1, 1.001 - Math.pow(2, -12 * t)), // same ease as GSAP
   });
 });
