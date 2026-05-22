@@ -4,6 +4,21 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import Lenis from "lenis";
 import "./style.css";
 
+// 📦 Preload large images into browser cache to prevent scroll/rotation transition glitches
+const imagesToPreload = [
+  "/images/Ramen1.webp",
+  "/images/Ramen2.webp",
+  "/images/Ramen3.webp",
+  "/images/Ramen4.webp",
+  "/images/Ramen5.webp",
+  "/images/WOOD.webp",
+  "/images/hero-bg.webp"
+];
+imagesToPreload.forEach((src) => {
+  const img = new Image();
+  img.src = src;
+});
+
 // 🔌 Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
