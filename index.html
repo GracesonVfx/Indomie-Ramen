@@ -4,57 +4,173 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Indomie Ramen — The Ultimate Comfort Food</title>
   </head>
   <body>
-    <div id="main">
-      <div id="home" class="w-full h-screen">
-        <div id="hero" class="">
-          <h5 class="text-2xl flex items-center gap-1">
-            <img
-              width="50"
-              height="50"
-              src="https://img.icons8.com/ios/50/horizontal-line.png"
-              alt="horizontal-line"
-              class="invert"
-              />
-              japanese
-              <img
-              width="50"
-              height="50"
-              src="https://img.icons8.com/ios/50/horizontal-line.png"
-              alt="horizontal-line"
-              class="invert"
-            />
-          </h5>
-          <h1 class="text-8xl">INDOMIE</h1>
-          <h1 id="r" class="">RAMEN</h1>
-          <div id="wood">
-            <img src="./images/WOOD.png" alt="" />
-            <div id="bowls">
-              <img class="bowl-wrapper" src="./images/Ramen1.png" alt="" />
-              <img class="bowl-wrapper" src="./images/Ramen2.png" alt="" />
-              <img class="bowl-wrapper" src="./images/Ramen4.png" alt="" />
-              <img class="bowl-wrapper" src="./images/Ramen3.png" alt="" />
-              <img class="bowl-wrapper" src="./images/Ramen5.png" alt="" />
-              <img class="bowl-wrapper" src="./images/Ramen4.png" alt="" />
-            </div>
-          </div>
-        </div>
-        <button id="nextBtn">NEXT</button>
-      </div>
+    <!-- 🌌 Interactive Gold Dust Particles Canvas -->
+    <canvas id="bg-particles" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
 
-      <div id="about" class="w-full h-screen">
-        <div id="left">
-          <div id="bowlTarget"></div>
-        </div>
-        <div id="right">
-          <h1>ABOUT</h1>
-          <h3>Lorem ipsum dolor sit amet...</h3>
-        </div>
+    <!-- 🧭 Premium Navigation Header -->
+    <nav id="navbar" class="navbar-container">
+      <div class="navbar-logo">INDOMIE</div>
+      <div class="navbar-links">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#menu" class="nav-link">Menu</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <div class="navbar-actions">
+        <button class="btn-order">Order Now</button>
+        <!-- Hamburger Menu Button -->
+        <button id="menu-toggle" class="menu-toggle" aria-label="Toggle Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="mobile-menu">
+      <div class="mobile-menu-links">
+        <a href="#home" class="mobile-nav-link">Home</a>
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="#menu" class="mobile-nav-link">Menu</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
+        <button class="btn-order mobile-btn-order mt-8">Order Now</button>
       </div>
     </div>
 
-    <script type="module" src="./src/main.js"></script>
+    <!-- 🍜 Shared Transition Bowl Flyer -->
+    <img id="transition-bowl" class="transition-bowl" src="/images/Ramen1.png" alt="Ramen" />
+
+    <div id="main" class="relative z-10">
+      <!-- 🏠 Home / Hero Section -->
+      <div id="home" class="w-full h-screen relative overflow-hidden">
+        <!-- Japanese Typography Watermark (Ramen) -->
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[20vw] font-bold text-white/[0.015] pointer-events-none select-none z-0 tracking-widest font-sans">拉麺</div>
+
+        <div id="hero" class="relative z-10">
+          <h5 class="text-xs tracking-[0.3em] font-medium uppercase flex items-center gap-4 text-white/70 select-none mb-3">
+            <span class="w-8 h-[2px] bg-[#ffdd80]/60 inline-block"></span>
+            Japanese Fusion
+            <span class="w-8 h-[2px] bg-[#ffdd80]/60 inline-block"></span>
+          </h5>
+          <h1 class="text-8xl tracking-wider select-none leading-none">INDOMIE</h1>
+          <h1 id="r" class="select-none">RAMEN</h1>
+          
+          <div id="wood">
+            <img src="/images/WOOD.png" alt="Wood Plate" class="select-none" />
+            <div id="bowls">
+              <img class="bowl-wrapper" src="/images/Ramen1.png" alt="Ramen 1" />
+              <img class="bowl-wrapper" src="/images/Ramen2.png" alt="Ramen 2" />
+              <img class="bowl-wrapper" src="/images/Ramen4.png" alt="Ramen 4" />
+              <img class="bowl-wrapper" src="/images/Ramen3.png" alt="Ramen 3" />
+              <img class="bowl-wrapper" src="/images/Ramen5.png" alt="Ramen 5" />
+              <img class="bowl-wrapper" src="/images/Ramen4.png" alt="Ramen 4 Clone" />
+            </div>
+          </div>
+        </div>
+        <button id="nextBtn" class="hover:scale-105 active:scale-95 transition-transform duration-200">NEXT</button>
+      </div>
+
+      <!-- 📖 About Section -->
+      <div id="about" class="w-full h-screen relative overflow-hidden">
+        <!-- Japanese Typography Watermark (Harmony) -->
+        <div class="absolute right-[5%] top-[15%] text-[20vh] font-bold text-[#ffdd80]/[0.015] pointer-events-none select-none z-0 writing-vertical font-sans">和風</div>
+
+        <div id="left" class="relative z-10">
+          <div id="bowlTarget">
+            <div class="target-glow absolute inset-0 rounded-full pointer-events-none"></div>
+            <div class="target-ring absolute -inset-4 border border-dashed border-[#ffdd80]/20 rounded-full pointer-events-none animate-[spin_40s_linear_infinite]"></div>
+          </div>
+        </div>
+        <div id="right" class="relative z-10">
+          <h1 class="text-5xl font-bold tracking-wider mb-6 text-[#ffdd80]">ABOUT INDOMIE RAMEN</h1>
+          <h3 class="text-lg leading-relaxed text-white/90">
+            Indomie Ramen brings together the rich, aromatic flavors of traditional Japanese ramen with the legendary, beloved spices of Indomie. Each bowl is a carefully crafted masterpiece, combining springy, hand-pulled noodles, slow-simmered savory broths, and fresh toppings to deliver a culinary experience that warms the soul. Taste the ultimate fusion of heritage and modern culinary innovation in every bite.
+          </h3>
+        </div>
+      </div>
+
+      <!-- 🍽️ Menu Section -->
+      <div id="menu" class="w-full min-h-screen bg-black/60 text-white py-20 px-8 md:px-16 relative flex flex-col items-center justify-center border-t border-white/5 overflow-hidden">
+        <!-- Japanese Typography Watermark (Flavor/Taste) -->
+        <div class="absolute left-[3%] top-[12%] text-[22vh] font-bold text-[#ffdd80]/[0.01] pointer-events-none select-none z-0 writing-vertical font-sans">味覚</div>
+
+        <h2 class="text-4xl md:text-5xl font-bold mb-20 text-[#ffdd80] tracking-widest text-center relative z-10" style="font-family: 'Gang of Three', sans-serif;">
+          OUR SIGNATURE MENU
+        </h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl w-full relative z-10 menu-grid">
+          <!-- Card 1 -->
+          <div class="menu-card relative bg-neutral-950/60 border border-white/10 rounded-2xl p-6 flex flex-col items-center text-center transition-all duration-300 hover:border-[#ffdd80]/50 hover:shadow-2xl hover:shadow-[#ffdd80]/5 group overflow-hidden">
+            <div class="card-shine absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="card-inner flex flex-col items-center h-full">
+              <img src="/images/Ramen1.png" alt="Classic Tonkotsu" class="w-40 h-40 object-contain mb-6 card-bowl-img" />
+              <h3 class="text-xl font-bold mb-2 text-[#ffdd80]">Classic Tonkotsu</h3>
+              <p class="text-white/60 text-xs mb-4 leading-relaxed">Rich 16-hour pork bone broth, tender pork chashu, soft-boiled ajitama egg, black garlic oil, and fresh scallions.</p>
+              <span class="text-lg font-semibold text-[#ffdd80] mt-auto">$16.50</span>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="menu-card relative bg-neutral-950/60 border border-white/10 rounded-2xl p-6 flex flex-col items-center text-center transition-all duration-300 hover:border-[#ffdd80]/50 hover:shadow-2xl hover:shadow-[#ffdd80]/5 group overflow-hidden">
+            <div class="card-shine absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="card-inner flex flex-col items-center h-full">
+              <img src="/images/Ramen2.png" alt="Tokyo Shoyu" class="w-40 h-40 object-contain mb-6 card-bowl-img" />
+              <h3 class="text-xl font-bold mb-2 text-[#ffdd80]">Tokyo Shoyu</h3>
+              <p class="text-white/60 text-xs mb-4 leading-relaxed">Clear chicken and dashi broth flavored with special aged soy sauce, topped with pork chashu, bamboo shoots, and nori.</p>
+              <span class="text-lg font-semibold text-[#ffdd80] mt-auto">$15.00</span>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="menu-card relative bg-neutral-950/60 border border-white/10 rounded-2xl p-6 flex flex-col items-center text-center transition-all duration-300 hover:border-[#ffdd80]/50 hover:shadow-2xl hover:shadow-[#ffdd80]/5 group overflow-hidden">
+            <div class="card-shine absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="card-inner flex flex-col items-center h-full">
+              <img src="/images/Ramen3.png" alt="Spicy Sapporo Miso" class="w-40 h-40 object-contain mb-6 card-bowl-img" />
+              <h3 class="text-xl font-bold mb-2 text-[#ffdd80]">Spicy Sapporo</h3>
+              <p class="text-white/60 text-xs mb-4 leading-relaxed">Hearty miso broth infused with chili paste and sesame, topped with spicy ground pork, sweet corn, and a pat of butter.</p>
+              <span class="text-lg font-semibold text-[#ffdd80] mt-auto">$17.00</span>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="menu-card relative bg-neutral-950/60 border border-white/10 rounded-2xl p-6 flex flex-col items-center text-center transition-all duration-300 hover:border-[#ffdd80]/50 hover:shadow-2xl hover:shadow-[#ffdd80]/5 group overflow-hidden">
+            <div class="card-shine absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="card-inner flex flex-col items-center h-full">
+              <img src="/images/Ramen4.png" alt="Black Garlic Mayu" class="w-40 h-40 object-contain mb-6 card-bowl-img" />
+              <h3 class="text-xl font-bold mb-2 text-[#ffdd80]">Black Garlic</h3>
+              <p class="text-white/60 text-xs mb-4 leading-relaxed">Our classic Tonkotsu broth drizzled with roasted black garlic oil (mayu), giving it a smoky, earthy depth.</p>
+              <span class="text-lg font-semibold text-[#ffdd80] mt-auto">$17.50</span>
+            </div>
+          </div>
+          <!-- Card 5 -->
+          <div class="menu-card relative bg-neutral-950/60 border border-white/10 rounded-2xl p-6 flex flex-col items-center text-center transition-all duration-300 hover:border-[#ffdd80]/50 hover:shadow-2xl hover:shadow-[#ffdd80]/5 group overflow-hidden">
+            <div class="card-shine absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="card-inner flex flex-col items-center h-full">
+              <img src="/images/Ramen5.png" alt="Hokkaido Shio" class="w-40 h-40 object-contain mb-6 card-bowl-img" />
+              <h3 class="text-xl font-bold mb-2 text-[#ffdd80]">Hokkaido Shio</h3>
+              <p class="text-white/60 text-xs mb-4 leading-relaxed">A light and crisp sea-salt broth made from kelp and vegetable stock, topped with grilled tofu, enoki mushrooms, and pak choi.</p>
+              <span class="text-lg font-semibold text-[#ffdd80] mt-auto">$14.50</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 📞 Contact / Footer Section -->
+      <footer id="contact" class="w-full bg-[#050505] text-white/40 py-16 px-8 md:px-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 relative select-none">
+        <div class="flex flex-col items-center md:items-start gap-3">
+          <span class="text-2xl font-bold text-[#ffdd80] tracking-widest" style="font-family: 'Gang of Three', sans-serif;">INDOMIE</span>
+          <p class="text-xs text-white/30 text-center md:text-left">Crafting the finest fusion ramen experiences since 2026.</p>
+          <p class="text-[10px] text-white/20 mt-1">© 2026 Indomie Ramen Co. All rights reserved.</p>
+        </div>
+        <div class="flex gap-8 text-xs font-semibold tracking-wider uppercase">
+          <a href="#" class="hover:text-white transition-colors duration-300">Privacy</a>
+          <a href="#" class="hover:text-white transition-colors duration-300">Terms</a>
+          <a href="#" class="hover:text-white transition-colors duration-300">Support</a>
+        </div>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>

@@ -6,9 +6,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: black;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -28,7 +28,7 @@ body {
   min-height: 100%;
   background-color: black;
   overflow-x: hidden;
-  overflow-y: scroll; /* or auto — to allow scroll */
+  overflow-y: scroll;
   scroll-behavior: auto;
 }
 
@@ -41,25 +41,86 @@ body::-webkit-scrollbar {
   display: none; /* Chrome/Safari */
 }
 
-body .noscroll {
-  overflow: hidden !important;
+/* 🌌 Fixed Interactive Background Particles Canvas */
+#bg-particles {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
   height: 100vh;
+  z-index: 0;
+  background-color: #0c0200; /* deep dark brownish-red base color */
+  pointer-events: none;
 }
 
+/* 🌊 Japanese Wave Background Texture overlay on each section */
+#home::before,
+#about::before,
+#menu::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("./pattern.svg");
+  background-repeat: repeat;
+  background-size: 100px 100px;
+  opacity: 0.035; /* ultra-subtle elegant texture */
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 🎋 Vertical Japanese Writing Mode utility */
+.writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: 0.25em;
+  line-height: 1;
+}
+
+/* 🏠 Home/Hero Section styling */
 #home {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url("/images/hero-bg.png");
+  background-image: linear-gradient(to bottom, rgba(12, 2, 0, 0.5) 0%, rgba(0, 0, 0, 0.9) 100%), url("/images/hero-bg.png");
+  background-size: cover;
+  background-position: center;
   position: relative;
 }
 
+#hero {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 10vh;
+  left: 0;
+  z-index: 10;
+}
+
+#hero h1 {
+  font-family: "Gang of Three", sans-serif;
+  color: rgba(255, 221, 181, 0.9);
+  text-shadow: 0 10px 25px rgba(0, 0, 0, 0.9);
+}
+
+#hero #r {
+  font-family: "Gang of Three", sans-serif;
+  color: rgba(255, 221, 181, 0.9);
+  font-size: 7.3rem;
+  line-height: 0.6;
+  text-shadow: 0 10px 25px rgba(0, 0, 0, 0.9);
+}
+
+/* 🪵 Wooden Lazy Susan Plate */
 #wood {
   position: absolute;
   width: 400px;
   height: 400px;
-  filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(0px 30px 45px rgba(0, 0, 0, 0.9));
+  top: 30vh;
+  left: 50%;
+  transform-origin: center;
 }
 
 #wood > img {
@@ -69,19 +130,13 @@ body .noscroll {
   pointer-events: none;
 }
 
-.clone {
-  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.6));
-}
-
+/* 🥣 Bowls orbit and styling */
 #bowls {
-  filter: drop-shadow(0px 5px 6px rgba(0, 0, 0, 0.6));
   position: absolute;
-  top: 87%;
-  left: 87%;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  transform: translate(-50%, -50%);
-  /* transform: rotate(); */
   pointer-events: none;
 }
 
@@ -91,54 +146,54 @@ body .noscroll {
   height: 80px;
   object-fit: contain;
   border-radius: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  transition: transform 0.3s ease;
+  filter: drop-shadow(0px 12px 16px rgba(0, 0, 0, 0.75));
+  cursor: pointer;
+  pointer-events: auto;
+  transition: filter 0.3s ease;
 }
 
-#hero {
-  width: 33vw;
-  height: 40vh;
-  display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  align-items: center;
+#bowls img:hover {
+  filter: drop-shadow(0px 0px 25px rgba(255, 221, 181, 0.45));
+}
+
+/* 🛫 Flying transition bowl */
+.transition-bowl {
   position: absolute;
-  top: 1.2rem;
+  pointer-events: none;
+  z-index: 1000;
+  display: none;
+  border-radius: 50%;
+  filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.85));
 }
 
-#hero h5 {
-  font-family: "Gang of Three", sans-serif;
-}
-
-#hero h1 {
-  font-family: "Gang of Three", sans-serif;
-  color: rgba(255, 221, 181, 0.788);
-}
-
-#hero #r {
-  font-family: "Gang of Three", sans-serif;
-  color: rgba(255, 221, 181, 0.788);
-  font-size: 7.3rem;
-  line-height: 0.6;
-}
-
+/* 🕹️ Button Call to Action */
 #nextBtn {
   position: absolute;
-  bottom: 2em;
-  right: 2rem;
-  padding: 0.5rem 1.5rem;
-  font-size: 1.2rem;
-  background: #ffdd80;
+  bottom: 4rem;
+  right: 4rem;
+  padding: 0.8rem 2.8rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  color: #120300;
+  background: linear-gradient(135deg, #ffebad 0%, #ffdd80 100%);
   border: none;
-  border-radius: 6px;
+  border-radius: 9999px;
   cursor: pointer;
-  z-index: 999;
+  z-index: 99;
+  box-shadow: 0 10px 30px rgba(255, 221, 181, 0.2), 0 0 0 1px rgba(255, 221, 181, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+#nextBtn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(255, 221, 181, 0.4), 0 0 0 2px rgba(255, 221, 181, 0.6);
+}
+
+/* 📖 About Section styling */
 #about {
   width: 100vw;
   height: 100vh;
-  font-family: "Gang of Three", sans-serif;
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -146,40 +201,367 @@ body .noscroll {
   flex-direction: row;
   background-image: linear-gradient(
       to bottom,
-      rgba(202, 61, 45, 0.6) 40%,
-      rgb(75, 0, 0) 99.9%
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(202, 61, 45, 0.45) 25%,
+      rgba(15, 0, 0, 0.98) 100%
     ),
     url("/images/hero-bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
+
 #left {
   width: 50%;
   height: 100%;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #bowlTarget {
-  width: 80px;
-  height: 80px;
+  width: 300px;
+  height: 300px;
   position: relative;
-  top: 45%;
-  left: 10%;
-  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 221, 181, 0.08) 0%, rgba(255, 221, 181, 0.02) 100%);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.75), inset 0 0 50px rgba(255, 221, 181, 0.08);
+  border: 1px dashed rgba(255, 221, 181, 0.2);
+  transition: all 0.5s ease;
+}
+
+.target-glow {
+  background: radial-gradient(circle, rgba(255, 221, 181, 0.15) 0%, transparent 70%);
+  filter: blur(15px);
+  animation: targetPulse 3s ease-in-out infinite;
+}
+
+@keyframes targetPulse {
+  0%, 100% { transform: scale(0.9); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.85; }
 }
 
 #right {
-  padding: 8vh 2vw;
+  padding: 0 8vw;
   width: 50%;
   height: 100%;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 #right h1 {
-  font-size: 5rem;
+  font-family: "Gang of Three", sans-serif;
+  color: #ffdd80;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  line-height: 1.2;
 }
 
 #right h3 {
-  font-size: 2rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 300;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: rgba(255, 248, 231, 0.85);
+  margin-top: 1.5rem;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* 🍽️ Menu Section styling */
+#menu {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(15, 0, 0, 0.98) 0%,
+    rgba(5, 0, 0, 0.99) 100%
+  );
+}
+
+/* 🪞 3D Glassmorphism Cards */
+.menu-grid {
+  perspective: 1200px;
+}
+
+.menu-card {
+  position: relative;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  backdrop-filter: blur(16px) saturate(180%);
+  background: rgba(15, 10, 10, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: transform, box-shadow;
+  min-height: 480px;
+  padding: 3rem 1.5rem 2.5rem 1.5rem !important;
+}
+
+/* 💡 Spot Light Flare Overlay */
+.card-shine {
+  background: radial-gradient(
+    circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 221, 181, 0.08) 0%,
+    transparent 75%
+  );
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.card-inner {
+  z-index: 2;
+  transform-style: preserve-3d;
+  transform: translateZ(20px); /* creates depth layers */
+}
+
+/* 🥣 Floating Ramen Bowls keyframes */
+.card-bowl-img {
+  filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.6));
+  animation: floatImg 4.5s ease-in-out infinite;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.menu-card:hover .card-bowl-img {
+  transform: scale(1.12) translateZ(40px) translateY(-8px); /* lift from card */
+  filter: drop-shadow(0 25px 30px rgba(0, 0, 0, 0.85));
+  animation-play-state: paused; /* lock floating animation on hover */
+}
+
+@keyframes floatImg {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* 🧭 Premium Navigation Bar */
+.navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  background: linear-gradient(to bottom, rgba(12, 2, 0, 0.85) 0%, transparent 100%);
+  border-bottom: 1px solid transparent;
+}
+
+.navbar-container.scrolled {
+  padding: 1rem 4rem;
+  background: rgba(12, 2, 0, 0.75);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 221, 181, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-logo {
+  font-family: 'Gang of Three', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #ffdd80;
+  user-select: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.05);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.nav-link {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #ffdd80;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #ffdd80;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.btn-order {
+  padding: 0.6rem 1.8rem;
+  border: 1px solid #ffdd80;
+  color: #ffdd80;
+  background: transparent;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 221, 181, 0.05);
+}
+
+.btn-order:hover {
+  background-color: #ffdd80;
+  color: #120300;
+  box-shadow: 0 6px 20px rgba(255, 221, 181, 0.25);
+  transform: translateY(-2px);
+}
+
+.btn-order:active {
+  transform: translateY(0);
+}
+
+/* Hamburger toggle button */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  transition: all 0.3s ease;
+  transform-origin: left center;
+}
+
+.menu-toggle.open .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(2px, -1px);
+  background-color: #ffdd80;
+}
+
+.menu-toggle.open .hamburger-line:nth-child(2) {
+  width: 0%;
+  opacity: 0;
+}
+
+.menu-toggle.open .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(2px, 1px);
+  background-color: #ffdd80;
+}
+
+/* Mobile Menu drawer */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  background: rgba(12, 2, 0, 0.98);
+  backdrop-filter: blur(20px);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: right 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.mobile-menu.open {
+  right: 0;
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.mobile-nav-link {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  color: #ffdd80;
+}
+
+.mobile-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #ffdd80;
+  transition: width 0.3s ease;
+}
+
+.mobile-nav-link:hover::after,
+.mobile-nav-link.active::after {
+  width: 100%;
+}
+
+.mobile-btn-order {
+  display: none;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 1.2rem 2rem;
+  }
+  .navbar-container.scrolled {
+    padding: 0.9rem 2rem;
+  }
+  .navbar-links {
+    display: none;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+  .btn-order {
+    display: none;
+  }
+  .mobile-btn-order {
+    display: block;
+  }
 }
